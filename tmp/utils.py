@@ -52,26 +52,7 @@ def svm_classify(data, C):
     return [test_acc, valid_acc]
 
 
-def load_pickle(f):
-    """
-    loads and returns the content of a pickled file
-    it handles the inconsistencies between the pickle packages available in Python 2 and 3
-    """
-    try:
-        import cPickle as thepickle
-    except ImportError:
-        import _pickle as thepickle
 
-    try:
-        ret = thepickle.load(f, encoding='latin1')
-    except TypeError:
-        ret = thepickle.load(f)
-
-    return ret
-
-    valid_acc = accuracy_score(valid_label, p)
-
-    return [test_acc, valid_acc]
 
 
 def load_pickle(f):
