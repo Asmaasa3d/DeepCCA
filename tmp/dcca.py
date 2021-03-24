@@ -4,7 +4,7 @@ from utils import load_data, svm_classify
 
 
 model_name = "deepcca"
-outfile_prefix = "mnist_test"
+outfile_prefix = "RSS_test"
 apply_linear_cca = True
 num_epochs = 10
 output_dim = 100
@@ -14,9 +14,9 @@ batch_size = 200
 
 
 (X_train_1, Y_train_1), (X_val_1, Y_val_1), (X_test_1, Y_test_1) = \
-            load_data('noisymnist_view1.gz', 'https://www2.cs.uic.edu/~vnoroozi/noisy-mnist/noisymnist_view1.gz')
+            load_data("orange.csv")
 (X_train_2, Y_train_2), (X_val_2, Y_val_2), (X_test_2, Y_test_2) = \
-            load_data('noisymnist_view2.gz', 'https://www2.cs.uic.edu/~vnoroozi/noisy-mnist/noisymnist_view2.gz')
+            load_data("vodafone.csv")
 
 
 
@@ -46,3 +46,4 @@ print("Projected Text summary", projected_feats[0][1].shape, projected_feats[1][
 [test_acc, valid_acc] = svm_classify(projected_feats, C=0.01)
 print("Accuracy on view 1 (validation data) is:", valid_acc * 100.0)
 print("Accuracy on view 1 (test data) is:", test_acc * 100.0)
+
