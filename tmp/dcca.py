@@ -14,7 +14,7 @@ batch_size = 200
 
 
 (X_train_1, Y_train_1), (X_val_1, Y_val_1), (X_test_1, Y_test_1) = \
-            load_data("orange.csv")
+            load_data("etisalat.csv")
 (X_train_2, Y_train_2), (X_val_2, Y_val_2), (X_test_2, Y_test_2) = \
             load_data("vodafone.csv")
 
