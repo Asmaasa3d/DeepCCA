@@ -75,8 +75,8 @@ def Euclidean_Dis(ID1,ID2):
   b=mappingLocIdxToPhysicalLoc(ID2)
   p1=[a['x'],a['y']]
   p2=[b['x'],b['y']]
-  p1=numpy.asanyarray(p1)
-  p2=numpy.asanyarray(p2)
+  p1=np.asanyarray(p1)
+  p2=np.asanyarray(p2)
   #https://stackoverflow.com/questions/1401712/how-can-the-euclidean-distance-be-calculated-with-numpy
   return numpy.linalg.norm(p1-p2)
 
