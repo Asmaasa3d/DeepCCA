@@ -3,6 +3,7 @@ import keras
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Input
 from keras.optimizers import RMSprop
+from tuning import data
 import numpy as np
 import pandas as pd
 
