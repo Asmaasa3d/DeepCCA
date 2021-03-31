@@ -6,13 +6,21 @@ from keras.optimizers import RMSprop
 import numpy as np
 import pandas as pd
 
-def create_model(data,ls,learning_rate,batch_size,epochs,dropout=None):
-  train_set_x, train_set_y = data[0]
-  valid_set_x, valid_set_y = data[1]
-  test_set_x, test_set_y = data[2]
+def create_model(hp):
+  
   input_size = data[0][0].shape[1]
   model = Sequential()
   model.add(Input(shape=(input_size,), name='Input'))
+  for i in range(hp.Int('num_layers', 2, 5)):
+    model.add(Dense(units=hp.Int('units_' + str(i),
+                                            min_value=32,
+                                            max_value=1000,
+                                            step=32),
+                               activation='relu'))
+    #model.add(Dropout(hp.Choice('dropout_rate', values=[0, 0.1, 0.2,0.5])))
+  
+
+  '''
   model.add(Dense(ls, activation='relu'))
   if dropout:
     model.add(Dropout(dropout))
@@ -23,13 +31,16 @@ def create_model(data,ls,learning_rate,batch_size,epochs,dropout=None):
   if dropout:
     model.add(Dropout(dropout))
   model.add(Dense(ls,activation='relu'))
+
   if dropout:
-    model.add(Dropout(dropout))
+    model.add(Dropout(dropout))'''
   model.add(Dense(1, activation='linear'))
-  opt = RMSprop(lr=learning_rate)
-  model.compile(loss='mean_squared_error', optimizer='RMSprop')
-  model.summary()
-  history = model.fit(train_set_x, train_set_y, epochs=epochs, batch_size=batch_size,validation_split=0.05,validation_data=[valid_set_x, valid_set_y ])
+  opt = RMSprop(lr=hp.Choice('learning_rate', values=[1e-2, 1e-3, 1e-4]))
+  model.compile(loss='mean_squared_error', optimizer='RMSprop',metrics=['mean_squared_error'])
+  return model 
+'''
+ model.summary()
+ history = model.fit(train_set_x, train_set_y, epochs=epochs, batch_size=batch_size,validation_data=[valid_set_x, valid_set_y ])
   
   
   ypred = model.predict(test_set_x)
@@ -56,7 +67,7 @@ def create_model(data,ls,learning_rate,batch_size,epochs,dropout=None):
     results.append(p)
     #print("Percentile_%s=%s" %  (i,p) )
   print(results)
-  print("Accuracy =", (acc/len(ypred)) * 100.0)  
-  return results 
+  print("Accuracy =", (acc/len(ypred)) * 100.0) 
+'''
   
 	
