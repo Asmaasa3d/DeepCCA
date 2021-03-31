@@ -78,7 +78,7 @@ def Euclidean_Dis(ID1,ID2):
   p1=np.asanyarray(p1)
   p2=np.asanyarray(p2)
   #https://stackoverflow.com/questions/1401712/how-can-the-euclidean-distance-be-calculated-with-numpy
-  return numpy.linalg.norm(p1-p2)
+  return np.linalg.norm(p1-p2)
 
 
 
