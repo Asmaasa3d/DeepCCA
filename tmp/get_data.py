@@ -5,10 +5,10 @@ from sklearn.model_selection import train_test_split
 #data from DCCA model
 from dcca import projected_feats,data_view_1 as data1,data_view_2 as data2
 
-def init():
+def main():
   d=generate_data()
   data =load_data(d)
-  
+  return data
 def mappingLocIdxToPhysicalLoc(idx):
     return {
         1:  {'x':5, 'y':1 },
@@ -98,7 +98,7 @@ def generate_data():
             for idx2,k in enumerate(data2[i][1]):
               if k==RP2 and cnt2>0:
                 cnt2-=1
-                x=projected_feats[i][0][idx1]+projected_feats[i][1][idx2]
+                x=projected_feats[i][0][idx1].tolist()+projected_feats[i][1][idx2].tolist()
                 #y=distance between(point1,point2)
                 y=Euclidean_Dis(j,k)
                 #new_data append [x,y]
