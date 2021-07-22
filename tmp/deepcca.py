@@ -115,7 +115,7 @@ class DCCA:
         for k in range(3):
             pred_out = model.predict([data1[k][0], data2[k][0]])
             r = int(pred_out.shape[1] / 2)
-            new_data.append([pred_out[:, :r], pred_out[:, r:], data1[k][1]])
+            new_data.append([pred_out[:, :r], pred_out[:, r:], data1[k][1], data2[k][1]])
 
         # based on the DCCA paper, a linear CCA should be applied on the output of the networks because
         # the loss function actually estimates the correlation when a linear CCA is applied to the output of the networks
